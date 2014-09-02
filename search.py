@@ -15,7 +15,7 @@ if __name__ == '__main__':
     parser.add_argument("--startswith", dest="name", help="start or full name of file to be searched")
     args = parser.parse_args()
 
-    path = '/home/amitt001/mycodes/dgplug/project/app/static/data.txt'
+    path = '/home/amitt001/project/app/static/data.txt'
     fobj = open(path)
     raw_data = fobj.read()
 
