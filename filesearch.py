@@ -5,11 +5,12 @@ import sys
 from argparse import ArgumentParser
 import json
 
-tags = {"py":"python","txt":"text_file", 
-"c":"c_program", "cpp":"c++_program", 
-"swp": "swap_file", "pyc": "pycache_file", 
-"zip":"zip_file", "rst":"restructured_text", 
-"md": "markdown", "untagged": "unknown-Type"}
+tags = {"py":"python","txt":"text", "c":"c", "cpp":"c++", 
+"swp": "swap", "pyc": "pycache", "zip":"zip", 
+"rst":"ReStructuredText", "md": "markdown", 
+"untagged": "unknown-Type", "jpg":"image", 
+"png":"image", "jpeg":"image", "ko":"kernel", "o":"object", 
+"flv":"video", "mkv":"video","mp4":"video"}
 
 ## To check if tags{} have the information about the tag
 def extension_check(extension):
@@ -53,7 +54,6 @@ if __name__ == "__main__":
 
             assign(abs_path, fname, ext)    
 
-    print("check")
-
+    os.chdir('/tmp')
     with open("data.txt", "w") as output:
         json.dump(indexed, output)

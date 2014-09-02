@@ -1,0 +1,1 @@
+Here goes your indexed data. The filesearch.py script will store the data in json format in temp directory with file name "data.txt". Copy that file to static directory.

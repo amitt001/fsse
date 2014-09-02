@@ -1,0 +1,1 @@
+Your command line search will be stored in a file in /tmp/search.txt file. Copy that file to static directory
