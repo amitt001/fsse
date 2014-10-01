@@ -12,33 +12,48 @@ tags = {"py":"python","txt":"text", "c":"c", "cpp":"c++",
 "png":"image", "jpeg":"image", "ko":"kernel", "o":"object", 
 "flv":"video", "mkv":"video","mp4":"video"}
 
-## To check if tags{} have the information about the tag
+
+## checks known or unknown file?
+
 def extension_check(extension):
     if tags.get(extension, 0) != 0:
         return 1
     else:
         return 0
 
-########################################################################
-## assign tags to the file and store the complete path with tags in dict
-########################################################################
+####################################
+##assign tags to the file and store 
+####################################
 
 indexed = {}
 
 def assign(path, fname, tag):
-    path = path + "/" +fname
+    # to check if '/' is present as the last character
+    slash = list(path)
+
+    if(slash[-1] == "/"):
+        path = path + fname
+    else:
+        path = path + "/" + fname
+
     indexed[path] = tags[tag]
 
-##########################
-## it all starts here
+
+#########################
+####1,2,3-Start
 #########################
 
 if __name__ == "__main__":
     
     flag = 1
     counter = 0
+    
+    parser = ArgumentParser()
+    parser.add_argument("-l", dest="location", default=os.getcwd(), help="Directory to be indexed")
+    parser.add_argument("-s", dest="save", default="/tmp", help="Location of indexed file")
+    args = parser.parse_args()
 
-    path = sys.argv[1]
+    path = args.location
 
     for names in os.walk(path):
 
@@ -54,6 +69,6 @@ if __name__ == "__main__":
 
             assign(abs_path, fname, ext)    
 
-    os.chdir('/tmp')
+    os.chdir(args.save)
     with open("data.txt", "w") as output:
         json.dump(indexed, output)

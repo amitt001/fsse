@@ -1,10 +1,10 @@
 fsse
 ====
 
-A Python web app.
+A very fast and lightweight server search and display web app. Written in Python and Flask framework.
 
-- filesearch.py indexing
+- *filesearch.py* - Index the localserver automatically with crontab.
 
-- search.py search
+- *app.py* - Flask web application.
 
-- static - json files to be displayed on the *http://127.0.0.1:5000/add/* and *http://127.0.0.1:5000/add/*
+- *fsearch.py* - searchs and return the result when user make a search request.
