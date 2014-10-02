@@ -14,10 +14,16 @@ def index():
     if request.method == 'POST':
         with open(".config") as config:
             for loc in config:
+
                 if "location" in loc:
                     path = loc.split()[-1]
 
-        value = fsearch.fsearch(path, request.form['type'], request.form['filename'])
+        try:
+            value = fsearch.fsearch(path, request.form['type'], request.form['filename'])
+
+        except FileNotFoundError:
+            return "No Index file exist. Please run filesearch.py script to index data or setup cron job, setup .config file for your system."
+    
         if value:
             return value
         else:

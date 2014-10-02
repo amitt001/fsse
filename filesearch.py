@@ -52,7 +52,7 @@ if __name__ == "__main__":
     parser.add_argument("-l", dest="location", default=os.getcwd(), help="Directory to be indexed")
     parser.add_argument("-s", dest="save", default="/tmp", help="Location of indexed file")
     args = parser.parse_args()
-
+    
     path = args.location
 
     for names in os.walk(path):
@@ -69,6 +69,15 @@ if __name__ == "__main__":
 
             assign(abs_path, fname, ext)    
 
-    os.chdir(args.save)
+    with open(".config") as config:
+        for loc in config:
+            if "location" in loc:
+                save = loc.split()[-1]
+    
+#    if(args.save):
+        os.chdir(args.save)
+#    else:
+#        os.chdir(save)
+
     with open("data.txt", "w") as output:
         json.dump(indexed, output)
